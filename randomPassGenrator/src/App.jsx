@@ -5,10 +5,10 @@ function App() {
   const [length, setLength] = useState(8);
   const [number, setNumber] = useState(false);
   const [specialChar, setSpecialChar] = useState(false);
-  const [bgcolor, setBgColor] = useState()
+  const [bgcolor, setBgColor] = useState();
   const [password, setPassword] = useState("cjbvvvjvbvb");
 
-  const passwordRefrence = useRef(null)
+  const passwordRefrence = useRef(null);
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -28,7 +28,7 @@ function App() {
 
   const copyToClipBoard = useCallback(() => {
     passwordRefrence.current?.select();
-    passwordRefrence.current?.setSelectionRange(0, 10)
+    passwordRefrence.current?.setSelectionRange(0, 10);
     window.navigator.clipboard.writeText(password);
   }, [password]);
 
@@ -36,28 +36,27 @@ function App() {
     passwordGenerator();
   }, [length, number, specialChar, passwordGenerator]);
 
-  const clickToChange = ()=>{
-    setBgColor('lightBlue')
-  }
+  const clickToChange = () => {
+    setBgColor("lightBlue");
+  };
 
-  const bothCall = ()=>{
+  const bothCall = () => {
     copyToClipBoard();
-    clickToChange()
-  }
+    clickToChange();
+  };
   return (
     <>
       <div className="bg-black p-5  justify-center flex ">
         <div className="p-5 bg-gray-600 w-[50%]   rounded-lg mt-20">
           <div className="flex">
             <input
-            style={{backgroundColor:bgcolor}}
+              style={{ backgroundColor: bgcolor }}
               type="text"
               value={password}
               readOnly
               className="w-full p-2 text-2xl font-semibold outline-0 rounded-md bg-stone-500"
             />
             <button
-            
               onClick={bothCall}
               className="bg-blue-500 p-4 rounded-md text-xl font-bold ms-2"
             >

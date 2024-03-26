@@ -1,0 +1,8 @@
+
+body{
+  /* background-color: #242424; */
+  place-items: center;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

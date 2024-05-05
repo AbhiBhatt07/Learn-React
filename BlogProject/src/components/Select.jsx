@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { useId } from "react";
 
 
@@ -22,4 +23,5 @@ function Select({ options, label, className = "", ...props }, ref) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default React.forwardRef(Select);

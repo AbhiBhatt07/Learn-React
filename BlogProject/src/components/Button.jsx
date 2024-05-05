@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-function Button({
-  btnText,
+export default function Button({
+  children,
   type = "button",
   bgColor = "bg-blue-700",
   textColor = "text-white",
@@ -12,8 +13,8 @@ function Button({
     <button
       className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className} `}
       {...props}
-    >{btnText}</button>
+    >
+      {children}
+    </button>
   );
 }
-
-export default Button;

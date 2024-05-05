@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import configur from "../configur/configur";
+import configur from "../configur/configur.js";
 import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
@@ -35,6 +35,7 @@ export class AuthService {
       );
       if (userAccount) {
         // call another function/method
+        return this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -48,17 +49,19 @@ export class AuthService {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
+      console.log(" Yhann error hain.");
       throw error;
     }
   }
 
   // Now we need to make Cuurent User functionality/method
-  async getCuurentUser() {
+  async getCurrentUser() {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("Appwrite service :: cuurent user error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
     }
+    return null;
   }
 
   // Now we make to logout functionality:

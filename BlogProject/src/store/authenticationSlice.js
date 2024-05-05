@@ -6,14 +6,14 @@ const intitalState = {
 };
 
 const authSlice = createSlice({
-  name: "Koi nahi",
+  name: "auth",
   intitalState,
   reducers: {
     login: (state, action) => {
       state.status = true;
       state.userData = action.payload.userData;
     },
-    logOut: (state) => {
+    logout: (state) => {
       // because there don't need of action
       state.status = false;
       state.action = null;
@@ -21,7 +21,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logOut } =
+export const { login, logout } =
   authSlice.actions; /* Yahan hum actions slice ke andar jo reducers hain
  uske andar jo methods hain unko actions bolte hain. */
 

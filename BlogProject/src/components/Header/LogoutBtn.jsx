@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import authService from "../../appwrite/auth";
-import { logOut } from "../../store/authenticationSlice";
+import { logout } from "../../store/authenticationSlice";
 
 function LogoutBtn() {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function LogoutBtn() {
     authService.logout().then(() => {
       /*Yai hamne isliye kiya hain because store ke ander logout ki state jo hain vo hamesha
     updated rahe. */
-      dispatch(logOut());
+      dispatch(logout());
     });
   };
 

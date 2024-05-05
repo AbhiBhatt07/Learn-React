@@ -2,8 +2,9 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import authService from "./appwrite/auth";
 import { useDispatch } from "react-redux";
-import { login, logOut } from "./store/authenticationSlice";
-import { Header, Footer } from "./components/index";
+import { login, logout } from "./store/authenticationSlice";
+import { Header, Footer } from "./components";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -11,31 +12,29 @@ function App() {
 
   useEffect(() => {
     authService
-      .getCuurentUser()
+      .getCurrentUser()
       .then((userData) => {
         /* if userData to dispatch kardo login method ko else dispatch logOut okay. */
         if (userData) {
           dispatch(login(userData));
         } else {
-          dispatch(logOut());
+          dispatch(logout());
         }
       })
       .finally(() => setLoading(false));
   });
 
-  if (!loading) {
-    return (
-      <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
-        <div className="w-full block">
-          <Header />
-          {/* <main>TODO: <Outlet /></main> */}
-          <Footer />
-        </div>
+    return !loading ? (
+      <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+        TODO:  <Outlet />
+        </main>
+        <Footer />
       </div>
-    )
-  } else{
-    return null
-  }
+    </div>
+    ) : null
 }
 
 export default App;

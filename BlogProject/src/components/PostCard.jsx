@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import appwriteService from "../appwrite/dbConfig";
 import { Link } from "react-router-dom";

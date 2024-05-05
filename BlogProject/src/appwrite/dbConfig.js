@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import configur from "../configur/configur";
-import { Client, ID, Databases, Storage, query, Query } from "appwrite";
+import configur from "../configur/configur.js";
+import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Service {
   client = new Client();
@@ -11,7 +11,7 @@ export class Service {
   constructor() {
     this.client
       .setEndpoint(configur.appwrite_blog_app_url)
-      .setProject(configur.appwrite_blog_app_projecId);
+      .setProject(configur.appwrite_blog_app_projectId);
     this.databases = new Databases(this.client);
     this.storage = new Storage(this.client);
   }
@@ -21,7 +21,7 @@ export class Service {
     try {
       return await this.databases.createDocument(
         configur.appwrite_blog_app_url,
-        configur.appwrite_blog_app_projecId,
+        configur.appwrite_blog_app_projectId,
         slug /* here slug play role of documentId(it's uniqely identify the post here.
          I use id.unique() also.*/,
         {
@@ -42,7 +42,7 @@ export class Service {
     try {
       return await this.databases.updateDocument(
         configur.appwrite_blog_app_url,
-        configur.appwrite_blog_app_projecId,
+        configur.appwrite_blog_app_projectId,
         slug,
         {
           title,
@@ -60,7 +60,7 @@ export class Service {
     try {
       await this.databases.deleteDocument(
         configur.appwrite_blog_app_url,
-        configur.appwrite_blog_app_projecId,
+        configur.appwrite_blog_app_projectId,
         slug
       );
       return true; /* true means ki han yai delete ho gaya hain. yai frontend per depend karta hai
@@ -77,8 +77,8 @@ export class Service {
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
-        configur.appwrite_blog_app_url,
-        configur.appwrite_blog_app_projecId,
+        configur.appwrite_db_id,
+        configur.appwrite_blog_app_projectId,
         slug
       );
     } catch (error) {
@@ -92,8 +92,8 @@ export class Service {
   async getPosts(querys = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocuments(
-        configur.appwrite_blog_app_url,
-        configur.appwrite_blog_app_projecId,
+        configur.appwrite_db_id,
+        configur.appwrite_blog_app_projectId,
         querys
       );
     } catch (error) {
@@ -130,7 +130,7 @@ export class Service {
 
   // Get file Preview service:
 
-  getFilePreviwe(fileId) {
+  getFilePreview(fileId) {
     return this.storage.getFilePreview(configur.appwrite_bucket_id, fileId);
   }
 }
